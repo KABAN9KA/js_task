@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+
+    <body>
+        <script>
+            function tableSearch()
+            {
+                var phrase = document.getElementById('search-text');
+                var table = document.getElementById('table');
+                var regPhrase = new RegExp(phrase.value, 'i');
+                var flag = false;
+                for (var i = 1; i < table.rows.length; i++) {
+                    flag = false;
+                    for (var j = table.rows[i].cells.length - 1; j >= 0; j--) {
+                        flag = regPhrase.test(table.rows[i].cells[j].innerHTML);
+                        if (flag) break;
+                    }
+                    if (flag) {
+                        table.rows[i].style.display = "";
+                    } else {
+                        table.rows[i].style.display = "none";
+                    }
+                }
+            }
+
+            function addRows() 
+            {
+                var table = document.getElementById( 'table' );
+                var rowCount = table.rows.length;
+                row = table.insertRow(rowCount),
+                cell1 = row.insertCell(0),
+                cell2 = row.insertCell(1);
+                cell3 = row.insertCell(2),
+                cell4 = row.insertCell(3);
+
+                cell1.innerHTML = 'Номер записи';
+                cell2.innerHTML = 'Заголовок';
+                cell3.innerHTML = 'Описание';
+                cell4.innerHTML = 'Удолить';
+            }
+            
+            function deleteRows()
+            {
+              var table = document.getElementById('table');
+              var rowCount = table.rows.length;
+              if(rowCount > '2')
+              {
+                var row = table.deleteRow(rowCount-1);
+                rowCount--;
+	            }
+            }
+        </script>
+        <input name="filter" type="text" id="search-text" onkeyup="tableSearch()"/>
+            <table id="table">
+                <thead>
+                    <tr>
+                        <td>Номер записи</td>
+                        <td>Название</td>
+                        <td>Описание</td>
+                        <td>Действия</td>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td>1</td>
+                        <td>Заголовок 1</td>
+                        <td>Описание 1</td>
+                        <td><a href="#" onclick ="deleteRows()" >Удалить</a></td>
+                    </td>
+                    <tr>
+                        <td>2</td>
+                        <td>Заголовок 2</td>
+                        <td>Описание 2</td>
+                        <td><a href="#" onclick ="deleteRows()" >Удалить</a></td>
+                    </td>
+                    <tr>
+                        <td>3</td>
+                        <td>Заголовок 3</td>
+                        <td>Описание 3</td>
+                        <td><a href="#" onclick ="deleteRows()" >Удалить</a></td>
+                    </td>
+                </tbody>
+            </table>
+            <button onclick = "addRows()" >Добавить элемент</button>
+    </body>
+
+</html>
