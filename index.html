@@ -36,18 +36,13 @@
                 cell1.innerHTML = 'Номер записи';
                 cell2.innerHTML = 'Заголовок';
                 cell3.innerHTML = 'Описание';
-                cell4.innerHTML = 'Удолить';
+                cell4.innerHTML = '<a href="#" onclick ="deleteRows(this)" >Удалить</a>';
             }
             
-            function deleteRows()
+            function deleteRows(r)
             {
-              var table = document.getElementById('table');
-              var rowCount = table.rows.length;
-              if(rowCount > '2')
-              {
-                var row = table.deleteRow(rowCount-1);
-                rowCount--;
-	            }
+                var i=r.parentNode.parentNode.rowIndex;
+                document.getElementById('table').deleteRow(i);
             }
         </script>
         <input name="filter" type="text" id="search-text" onkeyup="tableSearch()"/>
@@ -65,19 +60,19 @@
                         <td>1</td>
                         <td>Заголовок 1</td>
                         <td>Описание 1</td>
-                        <td><a href="#" onclick ="deleteRows()" >Удалить</a></td>
+                        <td><a href="#" onclick ="deleteRows(this)" >Удалить</a></td>
                     </td>
                     <tr>
                         <td>2</td>
                         <td>Заголовок 2</td>
                         <td>Описание 2</td>
-                        <td><a href="#" onclick ="deleteRows()" >Удалить</a></td>
+                        <td><a href="#" onclick ="deleteRows(this)" >Удалить</a></td>
                     </td>
                     <tr>
                         <td>3</td>
                         <td>Заголовок 3</td>
                         <td>Описание 3</td>
-                        <td><a href="#" onclick ="deleteRows()" >Удалить</a></td>
+                        <td><a href="#" onclick ="deleteRows(this)" >Удалить</a></td>
                     </td>
                 </tbody>
             </table>
